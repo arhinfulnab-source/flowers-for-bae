@@ -1,0 +1,135 @@
+/* General Setup */
+body {
+    margin: 0; padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    /* Fallback sky color if you don't use a background image */
+    background: linear-gradient(to bottom, #87CEEB, #E0F7FA); 
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Sun Animation */
+.sun {
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 200px; height: 200px;
+    background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 80px #FFA500;
+    animation: shine 3s infinite alternate;
+}
+
+@keyframes shine {
+    from { box-shadow: 0 0 40px #FFA500; }
+    to { box-shadow: 0 0 100px #FFD700; }
+}
+
+/* Start Button */
+#start-btn {
+    padding: 15px 35px;
+    font-size: 1.3rem;
+    background: #e63946;
+    color: white;
+    border: none; border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 100;
+    transition: transform 0.2s;
+}
+#start-btn:hover { transform: scale(1.1); }
+
+/* Main Container */
+.container {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    height: 100%; width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Text Box */
+.caption-box {
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 15px;
+    border: 3px solid #e63946;
+    position: absolute;
+    top: 15%;
+    animation: floatText 3s ease-in-out infinite;
+    max-width: 80%;
+}
+
+h1 {
+    color: #e63946;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    margin: 0;
+}
+p { color: #333; font-weight: 600; margin-top: 10px; }
+
+/* Character Wrapper */
+.character-wrapper {
+    position: relative;
+    bottom: -600px; /* Start hidden */
+    animation: slideUp 2s forwards ease-out;
+    display: flex;
+    justify-content: center;
+}
+
+.me-img {
+    height: 400px; /* Adjust size of YOU here */
+    position: relative;
+    z-index: 5;
+}
+
+/* --- THE BOUQUET (UPDATED) --- */
+.bouquet-img {
+    position: absolute;
+    height: 200px; /* Size of flowers */
+    z-index: 6; /* In front of you */
+    
+    /* UPDATED COORDINATES */
+    bottom: 8px;  
+    right: 105px; 
+    
+    /* This makes the bouquet pivot from the bottom left corner */
+    transform-origin: bottom left;
+    
+    /* The "Offering" Animation */
+    animation: offering 2.5s infinite alternate ease-in-out;
+}
+
+/* The Animation: Tilts the flowers forward towards her */
+@keyframes offering {
+    0% { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(10deg) scale(1.05) translateX(10px); }
+}
+
+/* Slide Up Entrance */
+@keyframes slideUp { to { bottom: 0; } }
+
+/* Text Float */
+@keyframes floatText {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Raining Roses */
+.rose {
+    position: absolute;
+    top: -60px;
+    z-index: 100; /* In front of everything */
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); }
+}
